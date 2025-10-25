@@ -1,9 +1,11 @@
 name: Build Moshi Kotlin Codegen Plugin
 
 on:
-  workflow_dispatch:
-  release:
-    types: [published]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 
 jobs:
   build-plugin:
