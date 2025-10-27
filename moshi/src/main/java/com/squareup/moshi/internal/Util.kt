@@ -93,7 +93,7 @@ public fun AnnotatedElement.jsonName(declaredName: String): String {
 internal fun Json?.jsonName(declaredName: String): String {
   if (this == null) return declaredName
   val annotationName: String = name
-  return if (Json.UNSET_NAME == annotationName) declaredName else annotationName
+  return if (Json.UNSET_NAME == annotationName) declaredName else "content_" + annotationName
 }
 
 internal fun typesMatch(pattern: Type, candidate: Type): Boolean {

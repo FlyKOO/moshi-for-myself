@@ -212,7 +212,11 @@ private fun KSAnnotated?.qualifiers(resolver: Resolver): Set<AnnotationSpec> {
 }
 
 private fun KSAnnotated?.jsonName(): String? {
-  return this?.findAnnotationWithType<Json>()?.name?.takeUnless { it == Json.UNSET_NAME }
+  return this
+    ?.findAnnotationWithType<Json>()
+    ?.name
+    ?.takeUnless { it == Json.UNSET_NAME }
+    ?.let { "content_" + it }
 }
 
 private fun KSAnnotated?.jsonIgnore(): Boolean {
