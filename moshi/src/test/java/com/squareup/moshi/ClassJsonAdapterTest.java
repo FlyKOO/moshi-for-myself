@@ -498,18 +498,18 @@ public final class ClassJsonAdapterTest {
     assertThat(toJson)
         .isEqualTo(
             "{"
-                + "\"#\":[\"8005553333\",\"8005554444\"],"
-                + "\"@\":\"cash@square.com\","
-                + "\"zip code\":\"94043\""
+                + "\"content_#\":[\"8005553333\",\"8005554444\"],"
+                + "\"content_@\":\"cash@square.com\"," 
+                + "\"content_zip code\":\"94043\""
                 + "}");
 
     NamedFields fromJson =
         fromJson(
             NamedFields.class,
             "{"
-                + "\"#\":[\"8005553333\",\"8005554444\"],"
-                + "\"@\":\"cash@square.com\","
-                + "\"zip code\":\"94043\""
+                + "\"content_#\":[\"8005553333\",\"8005554444\"],"
+                + "\"content_@\":\"cash@square.com\"," 
+                + "\"content_zip code\":\"94043\""
                 + "}");
     assertThat(fromJson.phoneNumbers).isEqualTo(Arrays.asList("8005553333", "8005554444"));
     assertThat(fromJson.emailAddress).isEqualTo("cash@square.com");

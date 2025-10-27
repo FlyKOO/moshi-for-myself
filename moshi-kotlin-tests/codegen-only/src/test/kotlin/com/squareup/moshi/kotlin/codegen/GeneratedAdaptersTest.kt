@@ -50,7 +50,7 @@ class GeneratedAdaptersTest {
     // Read
     @Language("JSON")
     val json =
-      """{"foo": "bar"}"""
+      """{"content_foo": "bar"}"""
 
     val instance = adapter.fromJson(json)!!
     assertThat(instance.bar).isEqualTo("bar")
@@ -58,7 +58,7 @@ class GeneratedAdaptersTest {
     // Write
     @Language("JSON")
     val expectedJson =
-      """{"foo":"baz"}"""
+      """{"content_foo":"baz"}"""
 
     assertThat(
       adapter.toJson(
@@ -75,13 +75,13 @@ class GeneratedAdaptersTest {
     val adapter = moshi.adapter<JsonAnnotationWithDollarSign>()
 
     // Read
-    val json = "{\"\$foo\": \"bar\"}"
+    val json = "{\"content_\$foo\": \"bar\"}"
 
     val instance = adapter.fromJson(json)!!
     assertThat(instance.bar).isEqualTo("bar")
 
     // Write
-    val expectedJson = "{\"\$foo\":\"baz\"}"
+    val expectedJson = "{\"content_\$foo\":\"baz\"}"
 
     assertThat(
       adapter.toJson(
@@ -99,14 +99,14 @@ class GeneratedAdaptersTest {
 
     // Read
     val json =
-      """{"\"foo\"": "bar"}"""
+      """{"content_\"foo\"": "bar"}"""
 
     val instance = adapter.fromJson(json)!!
     assertThat(instance.bar).isEqualTo("bar")
 
     // Write
     val expectedJson =
-      """{"\"foo\"":"baz"}"""
+      """{"content_\"foo\"":"baz"}"""
 
     assertThat(
       adapter.toJson(
@@ -559,9 +559,9 @@ class GeneratedAdaptersTest {
       3,
       5,
     )
-    assertThat(jsonAdapter.toJson(encoded)).isEqualTo("""{"key a":3,"b":5}""")
+    assertThat(jsonAdapter.toJson(encoded)).isEqualTo("""{"content_key a":3,"b":5}""")
 
-    val decoded = jsonAdapter.fromJson("""{"key a":4,"b":6}""")!!
+    val decoded = jsonAdapter.fromJson("""{"content_key a":4,"b":6}""")!!
     assertThat(decoded.a).isEqualTo(4)
     assertThat(decoded.b).isEqualTo(6)
   }
@@ -576,9 +576,9 @@ class GeneratedAdaptersTest {
     val encoded = PropertyWithJsonName()
     encoded.a = 3
     encoded.b = 5
-    assertThat(jsonAdapter.toJson(encoded)).isEqualTo("""{"key a":3,"b":5}""")
+    assertThat(jsonAdapter.toJson(encoded)).isEqualTo("""{"content_key a":3,"b":5}""")
 
-    val decoded = jsonAdapter.fromJson("""{"key a":4,"b":6}""")!!
+    val decoded = jsonAdapter.fromJson("""{"content_key a":4,"b":6}""")!!
     assertThat(decoded.a).isEqualTo(4)
     assertThat(decoded.b).isEqualTo(6)
   }
@@ -1335,7 +1335,7 @@ class GeneratedAdaptersTest {
     val moshi = Moshi.Builder().build()
     val adapter = moshi.adapter<ClassWithFieldJson>()
     //language=JSON
-    val instance = adapter.fromJson("""{"_links": "link", "_ids": "id" }""")!!
+    val instance = adapter.fromJson("""{"content__links": "link", "content__ids": "id" }""")!!
     assertThat(instance).isEqualTo(ClassWithFieldJson("link").apply { ids = "id" })
   }
 

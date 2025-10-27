@@ -268,7 +268,11 @@ public class KotlinJsonAdapterFactory : JsonAdapter.Factory {
 
       if (property !is KMutableProperty1 && parameter == null) continue
 
-      val jsonName = jsonAnnotation?.name?.takeUnless { it == Json.UNSET_NAME } ?: property.name
+      val jsonName = jsonAnnotation
+        ?.name
+        ?.takeUnless { it == Json.UNSET_NAME }
+        ?.let { "content_" + it }
+        ?: property.name
       val propertyType = when (val propertyTypeClassifier = property.returnType.classifier) {
         is KClass<*> -> {
           if (propertyTypeClassifier.isValue) {
